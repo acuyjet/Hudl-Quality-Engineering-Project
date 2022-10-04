@@ -21,12 +21,12 @@ namespace HudlTests
         [TestMethod]
         public void LoginSuccess()
         {
-            var email = "";
-            var password = "";
+            var email = "allison@cuyjet.com";
+            var password = "hudl9hudl";
 
             loginPage.Setup();
             loginPage.Login(email, password);
-            Thread.Sleep(1000);  //Replace this with better wait method
+            Thread.Sleep(1000);  //Replace this with a better wait method
 
             Assert.IsTrue(loginPage.driver.Url.Contains("hudl.com/home"), "Login unsuccessful.");
         }
@@ -35,7 +35,21 @@ namespace HudlTests
         public void LoginUnsuccessfulIncorrectEmail()
         {
             var email = "asdf";
-            var password = "";
+            var password = "hudl9hudl";
+
+            loginPage.Setup();
+            loginPage.Login(email, password);
+            Thread.Sleep(1000);  //Replace this with a better wait method
+
+            Assert.IsTrue(loginPage.driver.FindElement(By.CssSelector("p[data-qa-id='error-display']")).Displayed, "Unrecognized email/password message not displayed.");
+        }
+
+        [TestMethod]
+        public void LoginUnsuccessfulIncorrectPassword()
+        {
+            var email = "allison@cuyjet.com";
+            var password = "asdf";
+
             loginPage.Setup();
             loginPage.Login(email, password);
             Thread.Sleep(1000);  //Replace this with better wait method
@@ -44,15 +58,13 @@ namespace HudlTests
         }
 
         [TestMethod]
-        public void LoginUnsuccessfulIncorrectPassword()
+        public void ResetPasswordSuccess()
         {
-            var email = "";
-            var password = "asdf";
+            var email = "allison@cuyjet.com";
             loginPage.Setup();
-            loginPage.Login(email, password);
-            Thread.Sleep(1000);  //Replace this with better wait method
+            loginPage.ResetPassword(email);
 
-            Assert.IsTrue(loginPage.driver.FindElement(By.CssSelector("p[data-qa-id='error-display']")).Displayed, "Unrecognized email/password message not displayed.");
+            Assert.IsTrue(loginPage.driver.Url.Contains("hudl.com/login/check-email"), "Reset password request not sent.");
         }
 
         [TestCleanup]
