@@ -53,6 +53,14 @@ namespace HudlTests.PageObjects
                 return driver.FindElement(By.CssSelector("button[data-qa-id='login-btn']"));
             }
         }
+
+        private IWebElement ErrorDisplayMessage
+        {
+            get
+            {
+                return driver.FindElement(By.CssSelector("p[data-qa-id='error-display']"));
+            }
+        }
     }
 
 }
