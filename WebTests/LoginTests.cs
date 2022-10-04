@@ -17,8 +17,14 @@ namespace HudlTests
 
         LoginPage loginPage = new LoginPage();
 
+
+        /* ------ Credentials go here! ------ */
+
         public string email = "";
         public string password = "";
+
+        /* ---------------------------------- */
+
 
         [TestMethod]
         public void LoginSuccess()
