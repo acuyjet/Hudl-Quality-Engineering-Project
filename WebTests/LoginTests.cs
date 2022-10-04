@@ -17,8 +17,8 @@ namespace HudlTests
 
         LoginPage loginPage = new LoginPage();
 
-        public string email = "allison@cuyjet.com";
-        public string password = "hudl9hudl";
+        public string email = "";
+        public string password = "";
 
         [TestMethod]
         public void LoginSuccess()
