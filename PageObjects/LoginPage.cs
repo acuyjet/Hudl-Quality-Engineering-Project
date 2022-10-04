@@ -15,7 +15,6 @@ namespace HudlTests.PageObjects
 
         public void Setup()
         {
-            
             var outputDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             driver = new ChromeDriver(outputDirectory);
             driver.Navigate().GoToUrl("https://www.hudl.com/login");

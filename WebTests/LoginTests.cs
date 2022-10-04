@@ -14,16 +14,15 @@ namespace HudlTests
     [TestClass]
     public class LoginTests
     {
-        //IWebDriver driver;
 
         LoginPage loginPage = new LoginPage();
+
+        public string email = "allison@cuyjet.com";
+        public string password = "hudl9hudl";
 
         [TestMethod]
         public void LoginSuccess()
         {
-            var email = "allison@cuyjet.com";
-            var password = "hudl9hudl";
-
             loginPage.Setup();
             loginPage.Login(email, password);
             Thread.Sleep(1000);  //Replace this with a better wait method
@@ -34,11 +33,8 @@ namespace HudlTests
         [TestMethod]
         public void LoginUnsuccessfulIncorrectEmail()
         {
-            var email = "asdf";
-            var password = "hudl9hudl";
-
             loginPage.Setup();
-            loginPage.Login(email, password);
+            loginPage.Login("asdf", password);
             Thread.Sleep(1000);  //Replace this with a better wait method
 
             Assert.IsTrue(loginPage.driver.FindElement(By.CssSelector("p[data-qa-id='error-display']")).Displayed, "Unrecognized email/password message not displayed.");
@@ -47,11 +43,8 @@ namespace HudlTests
         [TestMethod]
         public void LoginUnsuccessfulIncorrectPassword()
         {
-            var email = "allison@cuyjet.com";
-            var password = "asdf";
-
             loginPage.Setup();
-            loginPage.Login(email, password);
+            loginPage.Login(email, "asdf");
             Thread.Sleep(1000);  //Replace this with better wait method
 
             Assert.IsTrue(loginPage.driver.FindElement(By.CssSelector("p[data-qa-id='error-display']")).Displayed, "Unrecognized email/password message not displayed.");
@@ -60,7 +53,6 @@ namespace HudlTests
         [TestMethod]
         public void ResetPasswordSuccess()
         {
-            var email = "allison@cuyjet.com";
             loginPage.Setup();
             loginPage.ResetPassword(email);
 
